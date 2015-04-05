@@ -54,3 +54,19 @@ extern uint16_t menuMin;
 extern uint16_t menuMax;
 extern uint8_t currentUnit;
 extern void load_units(void);
+
+UCUnit * curr_unit();
+uint16_t curr_step();
+
+typedef struct {
+	uint8_t index;
+} MenuData;
+
+MenuData * menudata_create(uint8_t index);
+void menudata_destroy(MenuData *data);
+
+void _uc_info(const char * message);
+void _uc_warn(const char * message);
+void _uc_error(const char * message);
+
+char* floatToString(char* buffer, uint8_t bufferSize, double number);

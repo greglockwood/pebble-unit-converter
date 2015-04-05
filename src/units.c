@@ -45,6 +45,34 @@ void ucunit_destroy(UCUnit * unit) {
 	free(unit);
 }
 
+UCUnit * curr_unit() {
+    return units[currentUnit];
+}
+
+uint16_t curr_step() {
+    UCUnit *unit = curr_unit();
+    if (unit == NULL) {
+        return -1;
+    } else {
+        //APP_LOG(APP_LOG_LEVEL_INFO, "curr_step(): unit abbrev: %s, steps_size: %d, steps[0-3]: [%d, %d, %d], steps[menuLevel-1] = steps[%d]: %d", unit->abbrev, unit->steps_size, unit->steps[0], unit->steps[1], unit->steps[2], menuLevel - 1, unit->steps[menuLevel - 1]);
+        return unit->steps[menuLevel-1];
+    }
+}
+
+MenuData * menudata_create(uint8_t index) {
+	MenuData * md = (MenuData*)malloc(sizeof(MenuData));
+	
+	md->index = index;
+	
+	_uc_info("Initialised menu data");
+	return md;
+}
+
+void menudata_destroy(MenuData * data) {
+	_uc_info("Destroying menu data");
+	free(data);
+}
+
 void _uc_info(const char * message) {
 	if(UC_LOGGING)
 		APP_LOG(APP_LOG_LEVEL_INFO, message);
@@ -60,3 +88,15 @@ void _uc_error(const char * message) {
 		APP_LOG(APP_LOG_LEVEL_ERROR, message);
 }
 
+char* floatToString(char* buffer, uint8_t bufferSize, double number)
+{
+    char decimalBuffer[5];
+
+    snprintf(buffer, bufferSize, "%d", (uint16_t)number);
+    strcat(buffer, ".");
+
+    snprintf(decimalBuffer, 5, "%02d", (uint16_t)((double)(number - (uint16_t)number) * (double)100));
+    strcat(buffer, decimalBuffer);
+
+    return buffer;
+}

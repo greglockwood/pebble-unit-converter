@@ -9,8 +9,9 @@ float kilometres_to_miles(float input) {
     return input * 0.621;
 }
 
+static uint16_t std_steps[] = { 50, 10, 1 };
+
 void load_units(void) {
-    uint16_t std_steps[] = { 50, 10, 1 };
     uint8_t std_steps_size = 3;
     uint16_t std_min = 0;
     uint16_t std_max = 500;
