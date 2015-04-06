@@ -2,6 +2,7 @@
     
 #define NUM_UNITS 2
 #define NUM_UNIT_PAIRS 1
+#define NUM_MAIN_WINDOW_SECTIONS 2
     
 #define MILES 0
 #define KILOMETRES 1
@@ -11,7 +12,7 @@
  * Whether diagnostic information of unit events should be logged.
  * You may toggle this in the c file.
  */
-extern const bool T3_LOGGING;
+extern const bool UC_LOGGING;
 
 /**
  * The function signature for a conversion function that returns a float given the input value.

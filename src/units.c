@@ -40,9 +40,12 @@ UCUnit * ucunit_create(uint8_t id,
 }
 
 void ucunit_destroy(UCUnit * unit) {
-	_uc_info("Destroying unit");
-    free(unit->steps);
+	_uc_info("Destroying unit.");
+//     _uc_info("Freeing steps");
+//     free(unit->steps);
+    _uc_info("Freeing unit");
 	free(unit);
+    _uc_info("Unit destroyed");
 }
 
 UCUnit * curr_unit() {

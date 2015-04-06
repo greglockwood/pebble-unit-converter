@@ -191,19 +191,4 @@ static void show_next_level()
     window_stack_push(menu_windows[menuLevel], menuLevel > 0 /* Animated */);
 }
 
-int main(void)
-{
-    load_units();
-	
-	show_next_level();
 
-    app_event_loop();
-	
-	MenuData *data;
-
-    for(int i = 0; i < MAX_SUB_MENUS; i++) {
-		data = (MenuData *)window_get_user_data(menu_windows[i]);
-		menudata_destroy(data);
-		window_destroy(menu_windows[i]);
-    }
-}
